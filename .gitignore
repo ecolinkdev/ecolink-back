@@ -32,6 +32,7 @@ venv/
 *.sqlite
 
 # Arquivos do Alembic
+alembic/versions/
 alembic/versions/*.pyc
 alembic/versions/__pycache__/
 
