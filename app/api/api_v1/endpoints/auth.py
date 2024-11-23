@@ -1,18 +1,24 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+from pydantic import BaseModel
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.core.security import create_access_token
 from app.crud import crud_user
-from app.schemas.token import Token
+from app.schemas.token import TokenWithUserDetails
 
 router = APIRouter()
 
 
-@router.post("/login", response_model=Token)
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+
+@router.post("/login", response_model=TokenWithUserDetails)
 def login(
-        db: Session = Depends(get_db),
-        form_data: OAuth2PasswordRequestForm = Depends()
+        form_data: LoginRequest,
+        db: Session = Depends(get_db)
 ):
     user = crud_user.authenticate(
         db, email=form_data.username, password=form_data.password
@@ -24,4 +30,5 @@ def login(
             headers={"WWW-Authenticate": "Bearer"},
         )
     access_token = create_access_token(subject=user.id)
-    return {"access_token": access_token, "token_type": "bearer"}
+    return {"access_token": access_token, "token_type": "bearer", "type": user.type, "name": user.name,
+            "email": user.email, "document": user.document}

@@ -6,3 +6,10 @@ class Token(BaseModel):
 
 class TokenPayload(BaseModel):
     sub: int | None = None
+
+
+class TokenWithUserDetails(Token):
+    type: str
+    name: str
+    email: str
+    document: str

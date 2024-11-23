@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ecolink-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:yourpassword@db/yourdatabase #Alterar antes do build
+      - BACKEND_CORS_ORIGINS=http://localhost:5173,http://localhost:3000 #Alterar antes do build
+    volumes:
+      - .:/app
+    restart: always

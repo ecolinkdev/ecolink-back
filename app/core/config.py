@@ -25,7 +25,8 @@ class Settings(BaseSettings):
     # CORS
     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = [
         "http://localhost:5173",  # Vite default port
-        "http://localhost:3000"
+        "http://localhost:3000",
+        "https://d88f-2804-3454-703-8872-1468-d7d9-4ba8-9bee.ngrok-free.app"
     ]
 
     class Config:
