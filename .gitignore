@@ -1,0 +1,77 @@
+# Byte-compiled / compiled Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches e diretórios temporários
+*.cache
+*.log
+*.sqlite3
+*.bak
+*.swp
+*.pid
+
+# Diretórios específicos de IDEs / Editores
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Virtualenvs
+env/
+venv/
+.virtualenv/
+
+# Arquivos de configuração sensíveis
+.env
+*.ini
+*.cfg
+
+# Dados do banco de dados local
+*.db
+*.sqlite
+
+# Arquivos do Alembic
+alembic/versions/*.pyc
+alembic/versions/__pycache__/
+
+# Logs e relatórios gerados
+logs/
+*.log
+*.out
+*.err
+
+# Arquivos de cobertura de testes
+.coverage
+htmlcov/
+.coverage.*
+
+# Arquivos gerados por ferramentas de build ou cache
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Arquivos de deploy ou Docker
+*.dockerfile
+*.tar.gz
+*.zip
+
+# Arquivos e logs gerados pelo pytest
+.cache/
+.pytest_cache/
+
+# Arquivos do Jupyter Notebook
+.ipynb_checkpoints/
+
+# Arquivos de análise estática
+.mypy_cache/
+.pyre/
+.dmypy.json
+.pytype/
+
+# Arquivos de debug do Windows/MacOS/Linux
+.DS_Store
+Thumbs.db
+*.lock
+*.rej
