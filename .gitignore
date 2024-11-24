@@ -31,11 +31,6 @@ venv/
 *.db
 *.sqlite
 
-# Arquivos do Alembic
-alembic/versions/
-alembic/versions/*.pyc
-alembic/versions/__pycache__/
-
 # Logs e relatórios gerados
 logs/
 *.log
