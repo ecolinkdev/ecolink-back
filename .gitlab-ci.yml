@@ -6,6 +6,7 @@ stages:
 
 variables:
    ENV_FILE: .env
+   ENV_PATH: /home/gitlab-runner/.envs/ecolink-back/
    DOCKER_COMPOSE_FILE: docker-compose.yml
    GIT_CLONE_PATH: $CI_BUILDS_DIR/ecolink-backend/ecolink-backend-stage
    
