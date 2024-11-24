@@ -23,9 +23,12 @@ class Settings(BaseSettings):
     DATABASE_URL: str = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_SERVER}/{POSTGRES_DB}"
 
     # CORS
-    BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = [
-        "*"
-    ]
+    BACKEND_CORS_ORIGINS: str = os.getenv("BACKEND_CORS_ORIGINS", "*")
+
+    def get_cors_origins(self) -> List[str]:
+        if self.BACKEND_CORS_ORIGINS == "*":
+            return ["*"]  # Permite todas as origens
+        return [origin.strip() for origin in self.BACKEND_CORS_ORIGINS.split(",")]
 
     class Config:
         case_sensitive = True
