@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: ecolink-backend
     ports:
-      - "8000:8000"
+      - "8011:8011"
     environment:
       - DATABASE_URL=postgresql://postgres:yourpassword@db/yourdatabase #Alterar antes do build
       - BACKEND_CORS_ORIGINS=http://localhost:5173,http://localhost:3000 #Alterar antes do build
