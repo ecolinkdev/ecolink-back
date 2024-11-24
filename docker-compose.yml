@@ -8,8 +8,6 @@ services:
     container_name: ecolink-backend
     ports:
       - "8011:8011"
-    environment:
-      - DATABASE_URL=postgresql://postgres:yourpassword@db/yourdatabase #Alterar antes do build
     volumes:
       - .:/app
     restart: always
