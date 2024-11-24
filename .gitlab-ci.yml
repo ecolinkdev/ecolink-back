@@ -5,6 +5,7 @@ stages:
   - deploy
 
 variables:
+   ENV_FILE: .env
    DOCKER_COMPOSE_FILE: docker-compose.yml
    GIT_CLONE_PATH: $CI_BUILDS_DIR/ecolink-backend/ecolink-backend-stage
    
@@ -34,8 +35,13 @@ deploy:
         ROOT: $GIT_CLONE_PATH
         DEPLOY: $GIT_CLONE_PATH 
     script:
+        - cp -v $ENV_PATH/$ENV_FILE $GIT_CLONE_PATH/
+
         - if [ "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" = "stage" ] || [ "$CI_COMMIT_BRANCH" = "stage" ]; then
-            echo "OK";
+            set -a;
+            . .env;
+            set +a;
+            env;
           fi
 
         - docker-compose -f $GIT_CLONE_PATH/$DOCKER_COMPOSE_FILE up -d --build
