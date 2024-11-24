@@ -18,7 +18,7 @@ def get_lat_long_from_address(address: str) -> Optional[Tuple[float, float]]:
         "limit": 1
     }
     headers = {
-        "User-Agent": "MyApp (myemail@example.com)"  # Substitua pelo seu e-mail
+        "User-Agent": "MyApp (ecolink@example.com)"
     }
     try:
         response = requests.get(url, params=params, headers=headers, timeout=10)
