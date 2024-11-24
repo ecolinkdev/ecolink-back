@@ -1,0 +1,45 @@
+image: docker:dind
+
+stages:
+  - build
+  - deploy
+
+variables:
+   DOCKER_COMPOSE_FILE: docker-compose.yml
+   GIT_CLONE_PATH: $CI_BUILDS_DIR/ecolink-backend/ecolink-backend-stage
+   
+before_script:
+    - if [ "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" = "stage" ] || [ "$CI_COMMIT_BRANCH" = "stage" ]; then
+        export DOCKER_COMPOSE_FILE=docker-compose.yml;
+        export AMB="stage";
+     fi
+
+build:
+    stage: build
+    image: python:3.10 
+    services:
+        - python:3.10
+    variables:
+        TAG: stage
+    before_script:
+        - export VERSION=1.0.$(git rev-list --count HEAD)-$TAG
+    tags:
+        - runner-shell-ist28618
+    script:
+        - ls $GIT_CLONE_PATH/
+       
+deploy:
+    stage: deploy
+    variables: 
+        ROOT: $GIT_CLONE_PATH
+        DEPLOY: $GIT_CLONE_PATH 
+    script:
+        - if [ "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" = "stage" ] || [ "$CI_COMMIT_BRANCH" = "stage" ]; then
+            echo "OK";
+          fi
+
+        - docker-compose -f $GIT_CLONE_PATH/$DOCKER_COMPOSE_FILE up -d --build
+    dependencies:
+        - build
+    tags:
+        - runner-shell-ist28618
