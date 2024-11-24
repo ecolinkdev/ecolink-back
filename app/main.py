@@ -3,7 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.api.api_v1.api import api_router
 
-app = FastAPI(title=settings.PROJECT_NAME)
+app = FastAPI(title=settings.PROJECT_NAME,
+              description="Ecolink a melhoria dos ganhos financeiros e qualidades de vida dos catadores de material reciclável")
 
 app.add_middleware(
     CORSMiddleware,
