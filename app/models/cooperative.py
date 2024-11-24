@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, JSON, TIMESTAMP, Time
+from sqlalchemy import Column, Integer, String, DateTime, JSON, Time, Float
 from sqlalchemy.sql import func
 from app.core.database import Base
 
@@ -14,4 +14,6 @@ class Cooperative(Base):
     phone = Column(String, nullable=False)
     open_time = Column(Time, nullable=False)
     close_time = Column(Time, nullable=False)
+    latitude = Column(Float, nullable=True)  # Allow null values initially
+    longitude = Column(Float, nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())

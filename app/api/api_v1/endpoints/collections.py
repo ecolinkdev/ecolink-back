@@ -6,6 +6,7 @@ from app.models.collection import Collection, CollectionStatus
 from app.schemas.collection import CollectionCreate, CollectionUpdate, Collection as CollectionSchema
 from app.api.deps import get_current_user
 from app.models.user import User
+from app.utils.geocoding import get_lat_long_from_address
 
 router = APIRouter()
 
@@ -17,9 +18,18 @@ def create_collection(
         collection_in: CollectionCreate,
         current_user: User = Depends(get_current_user)
 ):
+    lat_long = get_lat_long_from_address(collection_in.address)
+    if lat_long is None:
+        raise HTTPException(
+            status_code=400,
+            detail="Não foi possível obter coordenadas para o endereço fornecido."
+        )
+
     collection = Collection(
         user_id=current_user.id,
-        **collection_in.model_dump()
+        latitude=lat_long[0],
+        longitude=lat_long[1],
+        **collection_in.model_dump(exclude={"latitude", "longitude"})
     )
     db.add(collection)
     db.commit()

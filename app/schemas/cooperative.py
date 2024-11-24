@@ -12,6 +12,8 @@ class CooperativeBase(BaseModel):
     phone: str
     open_time: time
     close_time: time
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
 
     class Config:
         from_attributes = True
@@ -29,8 +31,10 @@ class CooperativeUpdate(BaseModel):
     phone: Optional[str] = None
     open_time: Optional[time] = None
     close_time: Optional[time] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
 
-    class Config:
+class Config:
         from_attributes = True
 
 
