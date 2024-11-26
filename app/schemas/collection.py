@@ -20,8 +20,6 @@ class CollectionCreate(CollectionBase):
 
 class CollectionUpdate(BaseModel):
     status: CollectionStatus
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
 
 
 class Collection(CollectionBase):
