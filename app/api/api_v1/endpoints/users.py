@@ -40,19 +40,28 @@ def create_user(user_in: UserCreate, db: Session = Depends(get_db)):
     ```
     POST /users/
     {
-        "name": "João Silva",
         "email": "joao.silva@exemplo.com",
+        "name": "João Silva",
+        "type": "residential" or "commercial",
+        "address": "Rua 2",
+        "phone": "999999999",
+        "document": "404",
         "password": "senha_segura123",
-        "type": "user"
     }
+    ```
     ```
     Resposta:
     {
-        "id": 1,
-        "name": "João Silva",
         "email": "joao.silva@exemplo.com",
-        "type": "residential"
+        "name": "João Silva",
+        "type": "residential",
+        "address": "Rua 2",
+        "phone": "999999999",
+        "document": "404",
+        "id": 4,
+        "created_at": "2024-11-27T14:05:30.319717Z"
     }
+    ```
     """
 
     # Verifica se o email já está em uso

@@ -54,6 +54,7 @@ def create_collection(
         "status": "pending"
     }
     ```
+    ```
     Resposta:
     {
         "id": 1,
@@ -65,6 +66,7 @@ def create_collection(
         "created_at": "2024-11-26T10:00:00",
         "updated_at": "2024-11-26T10:00:00"
     }
+    ```
     """
     lat_long = get_lat_long_from_address(collection_in.address)
     if lat_long is None:
@@ -173,6 +175,7 @@ def update_collection(
         "status": "completed"
     }
     ```
+    ```
     Resposta:
     {
         "id": 1,
@@ -184,6 +187,7 @@ def update_collection(
         "created_at": "2024-11-26T10:00:00",
         "updated_at": "2024-11-26T11:00:00"
     }
+    ```
     """
     collection = db.query(Collection).filter(
         Collection.id == collection_id,
