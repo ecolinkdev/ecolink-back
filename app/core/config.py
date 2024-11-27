@@ -27,7 +27,7 @@ class Settings(BaseSettings):
 
     def get_cors_origins(self) -> List[str]:
         if self.BACKEND_CORS_ORIGINS == "*":
-            return []  # Permite todas as origens
+            return ["*"]  # Permite todas as origens
         return [origin.strip() for origin in self.BACKEND_CORS_ORIGINS.split(",")]
 
     class Config:
